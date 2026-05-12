@@ -1,0 +1,30 @@
+{
+  "user": "Andrzej",
+  "started": "2026-05-12",
+  "current_level": "A1",
+  "current_lesson": 1,
+  "target_level": "A2",
+  "streak_days": 0,
+  "last_session": null,
+  "total_sessions": 0,
+  "total_minutes": 0,
+  "completed_lessons": [],
+  "test_scores": {},
+  "levels": {
+    "A1": {
+      "status": "in_progress",
+      "started": "2026-05-12",
+      "completed": null,
+      "lessons_total": 12,
+      "lessons_done": 0
+    },
+    "A2": {
+      "status": "locked",
+      "started": null,
+      "completed": null,
+      "lessons_total": 16,
+      "lessons_done": 0
+    }
+  },
+  "flashcards": {}
+}

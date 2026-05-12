@@ -1,0 +1,121 @@
+name: Daily Study Reminder
+
+on:
+  schedule:
+    - cron: '0 7 * * *'   # 9:00 czasu polskiego (CET) / 8:00 CEST
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read progress
+        id: prog
+        run: |
+          if [ -f progress.json ]; then
+            LEVEL=$(jq -r '.current_level' progress.json)
+            LESSON=$(jq -r '.current_lesson' progress.json)
+            DONE=$(jq -r '.completed_lessons | length' progress.json)
+            TOTAL=$(jq -r ".levels[$LEVEL].lessons_total" progress.json 2>/dev/null || echo "?")
+            WORDS=$(jq -r '.flashcards | length' progress.json)
+            echo "level=$LEVEL" >> $GITHUB_OUTPUT
+            echo "lesson=$LESSON" >> $GITHUB_OUTPUT
+            echo "done=$DONE" >> $GITHUB_OUTPUT
+            echo "total=$TOTAL" >> $GITHUB_OUTPUT
+            echo "words=$WORDS" >> $GITHUB_OUTPUT
+          else
+            echo "level=A1" >> $GITHUB_OUTPUT
+            echo "lesson=1" >> $GITHUB_OUTPUT
+            echo "done=0" >> $GITHUB_OUTPUT
+            echo "total=12" >> $GITHUB_OUTPUT
+            echo "words=0" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Post daily reminder
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const days = ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'];
+            const now = new Date();
+            const day = days[now.getDay()];
+            const date = now.toLocaleDateString('pl-PL', {day:'numeric', month:'long', year:'numeric'});
+
+            const level = '${{ steps.prog.outputs.level }}';
+            const lesson = '${{ steps.prog.outputs.lesson }}';
+            const done = '${{ steps.prog.outputs.done }}';
+            const total = '${{ steps.prog.outputs.total }}';
+            const words = '${{ steps.prog.outputs.words }}';
+            const pagesUrl = `https://${context.repo.owner}.github.io/${context.repo.repo}/`;
+
+            const body = [
+              `## 📚 ${day}, ${date}`,
+              ``,
+              `| | |`,
+              `|---|---|`,
+              `| **Poziom** | ${level} |`,
+              `| **Lekcja** | ${lesson} |`,
+              `| **Postęp** | ${done}/${total} lekcji ukończonych |`,
+              `| **Słówka w SRS** | ${words} |`,
+              ``,
+              `### Dzisiejszy plan`,
+              `- [ ] 📖 Kontynuuj lekcję ${lesson} (poziom ${level})`,
+              `- [ ] 🃏 Zrób powtórki słówek w SRS`,
+              `- [ ] ⏱️ Minimum 15 minut nauki`,
+              ``,
+              `**[➡️ Otwórz aplikację](${pagesUrl})**`,
+              ``,
+              `---`,
+              `*Konsekwencja to klucz — nawet 10 minut dziennie robi różnicę! 🇩🇪*`
+            ].join('\n');
+
+            // Szukaj istniejącego issue z labelką study-journal
+            const {data: issues} = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'study-journal',
+              per_page: 1
+            });
+
+            if (issues.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                body
+              });
+              console.log(`Dodano komentarz do issue #${issues[0].number}`);
+            } else {
+              // Utwórz labelkę jeśli nie istnieje
+              try {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: 'study-journal',
+                  color: '1a56db',
+                  description: 'Dziennik nauki niemieckiego'
+                });
+              } catch {}
+
+              const {data: issue} = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: '📚 Dziennik Nauki — Deutsch A1→B2',
+                body: [
+                  '# Dziennik Nauki Niemieckiego',
+                  '',
+                  'Codzienne przypomnienia o nauce pojawiają się tu automatycznie.',
+                  'Zasubskrybuj ten issue (🔔 Subscribe), żeby dostawać emaile z GitHub.',
+                  '',
+                  '---'
+                ].join('\n'),
+                labels: ['study-journal']
+              });
+              console.log(`Utworzono nowy issue #${issue.number}`);
+            }

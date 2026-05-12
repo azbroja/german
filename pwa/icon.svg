@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="64" fill="#000000"/>
+  <rect y="64" width="192" height="64" fill="#dd0000"/>
+  <rect y="128" width="192" height="64" fill="#ffce00"/>
+  <text x="96" y="112" font-family="system-ui,sans-serif" font-size="52" font-weight="bold"
+        fill="white" text-anchor="middle" dominant-baseline="middle">DE</text>
+</svg>
