@@ -323,11 +323,28 @@ function renderTestQuestion() {
 
   const body = overlay.querySelector('#test-body');
 
+  // Build choice options: explicit (type=choice) or auto-generated (pl_de / de_pl)
+  let choiceOpts = null;
   if (q.type === 'choice') {
-    const opts = [...q.opts].sort(() => Math.random() - 0.5);
+    choiceOpts = [...(q.opts || q.choices || [])];
+  } else if (q.type === 'pl_de' || q.type === 'de_pl') {
+    const lesson = CURRICULUM.getLesson(testState.lessonId);
+    const vocab = lesson?.vocab || [];
+    const pool = (q.type === 'pl_de'
+      ? vocab.map(([de]) => de)
+      : vocab.map(([_, pl]) => pl)
+    ).filter(w => normalize(w) !== normalize(q.a));
+    const wrongs = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+    if (wrongs.length >= 1) choiceOpts = [...wrongs, q.a];
+  }
+
+  if (choiceOpts && choiceOpts.length >= 2) {
+    const opts = choiceOpts.sort(() => Math.random() - 0.5);
+    const typeLabel = q.type === 'pl_de' ? '🇵🇱→🇩🇪' : q.type === 'de_pl' ? '🇩🇪→🇵🇱' : '';
     body.innerHTML = `
-      <div class="test-q-num">Pytanie ${current + 1} z ${total}</div>
+      <div class="test-q-num">Pytanie ${current + 1} z ${total}${typeLabel ? ' — ' + typeLabel : ''}</div>
       <div class="test-q-text">${q.q}</div>
+      ${q.hint ? `<div class="test-q-hint">💡 ${q.hint}</div>` : ''}
       <div class="choice-grid">
         ${opts.map(opt => `<button class="choice-btn" data-opt="${opt}">${opt}</button>`).join('')}
       </div>
@@ -340,12 +357,12 @@ function renderTestQuestion() {
       btn.addEventListener('click', () => {
         if (testState.answered) return;
         testState.answered = true;
-        const correct = btn.dataset.opt === q.a;
+        const correct = normalize(btn.dataset.opt) === normalize(q.a);
         if (correct) testState.score++;
         btn.classList.add(correct ? 'correct' : 'wrong');
         if (!correct) {
           body.querySelectorAll('.choice-btn').forEach(b => {
-            if (b.dataset.opt === q.a) b.classList.add('reveal');
+            if (normalize(b.dataset.opt) === normalize(q.a)) b.classList.add('reveal');
           });
         }
         showFeedback(correct, q.a);

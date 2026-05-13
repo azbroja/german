@@ -662,6 +662,18 @@ const CURRICULUM = {
     lessonsTotal: 16,
     lessons: [
       { id:'A2_01', level:'A2', num:1, title:'Codzienne czynności i rutyna',
+        intro:'Marek pracuje w berlińskiej firmie IT od 3 miesięcy. Jego koleżanka Lisa pyta go o typowy dzień w pracy — okazuje się, że mają zupełnie różne rutyny poranne.',
+        dialogue:[
+          {s:'Lisa',de:'Marek, wann stehst du normalerweise auf?',pl:'Marek, o której zwykle wstajesz?'},
+          {s:'Marek',de:'Ich stehe meistens um halb sieben auf. Und du?',pl:'Zazwyczaj wstaję o wpół do siódmej. A ty?'},
+          {s:'Lisa',de:'Oh, ich stehe erst um acht auf — ich arbeite meistens von zu Hause.',pl:'O, ja wstaję dopiero o ósmej — zazwyczaj pracuję z domu.'},
+          {s:'Marek',de:'Das klingt gut! Ich fahre mit dem Zug zur Arbeit. Das dauert fast eine Stunde.',pl:'Brzmi fajnie! Ja jadę do pracy pociągiem. To trwa prawie godzinę.'},
+          {s:'Lisa',de:'Oh nein! Frühstückst du wenigstens zu Hause?',pl:'O nie! Przynajmniej jesz śniadanie w domu?'},
+          {s:'Marek',de:'Nein, ich frühstücke meistens in der Küche hier im Büro. Um 9 Uhr machen wir kurz Pause.',pl:'Nie, zazwyczaj jem śniadanie w kuchni tutaj w biurze. O 9 robimy krótką przerwę.'},
+          {s:'Lisa',de:'Und wann kommst du abends nach Hause?',pl:'A kiedy wracasz wieczorem do domu?'},
+          {s:'Marek',de:'Meistens so um 19 Uhr. Dann esse ich zu Abend und gehe früh schlafen.',pl:'Zazwyczaj około 19. Potem jem kolację i wcześnie idę spać.'}
+        ],
+        cultural:'Niemcy są mistrzami "Feierabend" — świętego czasu po pracy. Bardzo rzadko zostają w biurze po godzinach bez wyraźnej potrzeby. Fraza "Ich mache jetzt Feierabend" (kończę pracę) jest sygnałem, że czas wrócić do domu i nikt nie powinien ci przeszkadzać.',
         vocab:[
           ['aufstehen','wstawać','Ich stehe um 7 Uhr auf.'],
           ['sich waschen','myć się','Ich wasche mich morgens.'],
@@ -699,6 +711,18 @@ const CURRICULUM = {
         ]
       },
       { id:'A2_02', level:'A2', num:2, title:'Zdrowie i ciało',
+        intro:'Marek poczuł się źle w środku ważnego projektu. Musi zadzwonić do szefa i do lekarza — oba telefony po niemiecku to nie lada wyzwanie.',
+        dialogue:[
+          {s:'Marek',de:'Guten Morgen, hier ist Marek. Ich bin leider krank und kann heute nicht kommen.',pl:'Dzień dobry, tu Marek. Niestety jestem chory i nie mogę dziś przyjść.'},
+          {s:'Chef',de:'Oh, das tut mir leid. Was fehlt Ihnen denn?',pl:'O, przykro mi. Co Panu dolega?'},
+          {s:'Marek',de:'Ich habe Fieber und starke Kopfschmerzen. Mir tut auch der Hals weh.',pl:'Mam gorączkę i silny ból głowy. Boli mnie też gardło.'},
+          {s:'Chef',de:'Das klingt nach einer Erkältung. Bitte erholen Sie sich gut!',pl:'Brzmi jak przeziębienie. Proszę dobrze odpocząć!'},
+          {s:'Marek',de:'Danke. Ich gehe heute noch zum Arzt.',pl:'Dziękuję. Pójdę dziś jeszcze do lekarza.'},
+          {s:'Arzt',de:'Guten Tag. Was kann ich für Sie tun?',pl:'Dzień dobry. W czym mogę Panu pomóc?'},
+          {s:'Marek',de:'Mir geht es nicht gut. Ich habe seit gestern Fieber und Husten.',pl:'Niedobrze mi. Mam od wczoraj gorączkę i kaszel.'},
+          {s:'Arzt',de:'Ich verschreibe Ihnen Tabletten. Bitte ruhen Sie sich drei Tage aus.',pl:'Przepiszę Panu tabletki. Proszę odpoczywać przez trzy dni.'}
+        ],
+        cultural:'W Niemczech przy każdym zwolnieniu lekarskim (Krankmeldung) wymagane jest zaświadczenie od lekarza już od pierwszego dnia choroby (zależy od umowy). Pracodawcy nie wolno pytać o diagnozę — tylko o przewidywany czas nieobecności. Zaświadczenie wysyła się do pracodawcy i kasy chorych.',
         vocab:[
           ['der Kopf','głowa','Ich habe Kopfschmerzen.'],
           ['der Bauch','brzuch','Mir tut der Bauch weh.'],
@@ -734,7 +758,20 @@ const CURRICULUM = {
           {type:'choice',q:'Dativ "ich" to:',a:'mir',opts:['mich','mir','mein','ich']}
         ]
       },
-      { id:'A2_03', level:'A2', num:3, title:'Ubrania i opis wyglądu', vocab:[
+      { id:'A2_03', level:'A2', num:3, title:'Ubrania i opis wyglądu',
+        intro:'W piątek firma organizuje nieformalne spotkanie z klientami. Marek nie wie, co założyć — pyta koleżankę Anję o dress code w berlińskich firmach tech.',
+        dialogue:[
+          {s:'Marek',de:'Anja, was zieht man bei dem Kundentreffen an?',pl:'Anja, co się zakłada na to spotkanie z klientami?'},
+          {s:'Anja',de:'Hier ist alles sehr casual. Jeans und ein schönes Hemd reichen völlig.',pl:'Tu wszystko jest bardzo casual. Jeansy i ładna koszula w zupełności wystarczą.'},
+          {s:'Marek',de:'Kein Anzug? In Polen würde man da einen Anzug tragen.',pl:'Żaden garnitur? W Polsce w takiej sytuacji zakładałoby się garnitur.'},
+          {s:'Anja',de:'Nein, nein! Ein Anzug wäre hier fast overdressed. Unsere Kunden kommen auch in Jeans.',pl:'Nie, nie! Garnitur byłby tu wręcz przesadą. Nasi klienci też przychodzą w jeansach.'},
+          {s:'Marek',de:'Interessant. Und was trägst du?',pl:'Ciekawe. A ty co zakładasz?'},
+          {s:'Anja',de:'Ich trage ein blaues Kleid und flache Schuhe. Bequem und trotzdem schick!',pl:'Zakładam niebieską sukienkę i płaskie buty. Wygodnie i mimo to elegancko!'},
+          {s:'Marek',de:'Welche Größe hat dieses Kleid? Es passt dir super.',pl:'Jaki rozmiar ma ta sukienka? Świetnie na tobie leży.'},
+          {s:'Anja',de:'Größe 38. Danke! Du hast übrigens einen guten Stil, Marek.',pl:'Rozmiar 38. Dzięki! Nawiasem mówiąc, masz dobry styl, Marek.'}
+        ],
+        cultural:'Berlińskie firmy tech słyną z bardzo luźnego dress code. Startup-Kultur oznacza, że nawet CEO przychodzi w t-shircie i trampkach. Formalne ubranie (garnitur, krawat) może wręcz wywoływać pytania: "Masz dziś pogrzeb?" — to żart, ale oddaje ducha kultury pracy w Berlinie.',
+        vocab:[
         ['das Hemd','koszula','Er trägt ein weißes Hemd.'],['die Hose','spodnie','Eine schwarze Hose.'],
         ['das Kleid','sukienka','Sie trägt ein rotes Kleid.'],['der Mantel','płaszcz','Im Winter brauche ich einen Mantel.'],
         ['die Jacke','kurtka/marynarka','Ich ziehe die Jacke an.'],['der Schuh','but','Diese Schuhe sind bequem.'],
@@ -757,7 +794,20 @@ const CURRICULUM = {
         {type:'choice',q:'"Ein schwarzer Mantel" — końcówka "-er" bo:',a:'Männlich (m) po "ein"',
          opts:['Żeński po "ein"','Männlich (m) po "ein"','Nijaki po "ein"','Plural']}
       ]},
-      { id:'A2_04', level:'A2', num:4, title:'Uczucia i emocje', vocab:[
+      { id:'A2_04', level:'A2', num:4, title:'Uczucia i emocje',
+        intro:'Koniec kwartału, deadline projektu, i do tego małe nieporozumienie w teamie. Marek i jego kolega Tom rozmawiają szczerze o emocjach w pracy — po niemiecku, oczywiście.',
+        dialogue:[
+          {s:'Tom',de:'Marek, bist du in Ordnung? Du siehst heute irgendwie gestresst aus.',pl:'Marek, wszystko w porządku? Wyglądasz dziś jakoś na zestresowanego.'},
+          {s:'Marek',de:'Ja, ich bin ein bisschen nervös wegen des Deadlines. Ich mache mir Sorgen, ob wir fertig werden.',pl:'Tak, jestem trochę zdenerwowany przez ten deadline. Martwię się, czy zdążymy.'},
+          {s:'Tom',de:'Ich verstehe das. Ich war letzte Woche auch aufgeregt. Aber wir schaffen das!',pl:'Rozumiem to. Ja w zeszłym tygodniu też byłem podekscytowany/zdenerwowany. Ale damy radę!'},
+          {s:'Marek',de:'Danke, das höre ich gern. Ich freue mich schon auf das Wochenende.',pl:'Dzięki, miło to słyszeć. Już cieszę się na weekend.'},
+          {s:'Tom',de:'Ich auch! Übrigens — warst du gestern traurig? Du hast so wenig gesagt.',pl:'Ja też! Nawiasem mówiąc — byłeś wczoraj smutny? Tak mało mówiłeś.'},
+          {s:'Marek',de:'Ein bisschen. Ich hatte Heimweh — ich vermisse meine Familie in Polen.',pl:'Trochę. Tęskniłem za domem — brakuje mi rodziny w Polsce.'},
+          {s:'Tom',de:'Das ist ganz normal. Berlin kann am Anfang einsam sein. Aber du bist nicht allein hier!',pl:'To całkowicie normalne. Berlin może być na początku samotny. Ale nie jesteś tu sam!'},
+          {s:'Marek',de:'Das macht mich wirklich glücklich. Danke, Tom!',pl:'To naprawdę mnie uszczęśliwia. Dzięki, Tom!'}
+        ],
+        cultural:'Niemcy cenią "direktes Feedback" — bezpośrednią komunikację uczuć i problemów w pracy. Mówienie wprost "Ich bin frustriert" (Jestem sfrustrowany) jest tu normą i oznaką dojrzałości zawodowej, nie słabości. Unikanie tematu i chowanie emocji jest tu mniej cenione niż w wielu innych kulturach.',
+        vocab:[
         ['sich freuen','cieszyć się','Ich freue mich auf das Wochenende.'],
         ['traurig','smutny','Ich bin traurig.'],['wütend','wściekły','Er ist wütend.'],
         ['aufgeregt','podekscytowany','Ich bin aufgeregt.'],['nervös','zdenerwowany','Ich bin nervös.'],
@@ -2702,15 +2752,15 @@ const CURRICULUM = {
           note:'B2 = samodzielność językowa. Potrafisz dyskutować, argumentować i pisać teksty złożone.'
         },
         tests:[
-          {type:'choice',q:'Vervollständige: „Wenn ich Zeit ___, würde ich mehr lesen."',a:'hätte',choices:['habe','hätte','hatte','gehabt habe']},
-          {type:'choice',q:'Welche Form ist Vorgangspassiv Präteritum?',a:'wurde gemacht',choices:['wird gemacht','ist gemacht','wurde gemacht','war gemacht']},
-          {type:'choice',q:'Wähle den korrekten Konzessivsatz:',a:'Obwohl er müde war, arbeitete er weiter.',choices:['Obwohl er müde war, arbeitete er weiter.','Obwohl er müde ist, arbeitete er weiter.','Obwohl er müde war, er arbeitete weiter.','Obwohl er müde, arbeitete er weiter.']},
+          {type:'choice',q:'Vervollständige: „Wenn ich Zeit ___, würde ich mehr lesen."',a:'hätte',opts:['habe','hätte','hatte','gehabt habe']},
+          {type:'choice',q:'Welche Form ist Vorgangspassiv Präteritum?',a:'wurde gemacht',opts:['wird gemacht','ist gemacht','wurde gemacht','war gemacht']},
+          {type:'choice',q:'Wähle den korrekten Konzessivsatz:',a:'Obwohl er müde war, arbeitete er weiter.',opts:['Obwohl er müde war, arbeitete er weiter.','Obwohl er müde ist, arbeitete er weiter.','Obwohl er müde war, er arbeitete weiter.','Obwohl er müde, arbeitete er weiter.']},
           {type:'pl_de',q:'Chociaż padało, poszliśmy na spacer.',a:'Obwohl es regnete, gingen wir spazieren.'},
-          {type:'choice',q:'„Das Formular ___ bereits ausgefüllt." — Zustandspassiv?',a:'ist',choices:['wird','wurde','ist','war worden']},
+          {type:'choice',q:'„Das Formular ___ bereits ausgefüllt." — Zustandspassiv?',a:'ist',opts:['wird','wurde','ist','war worden']},
           {type:'pl_de',q:'Uczył się, żeby zdać egzamin.',a:'Er lernte, um die Prüfung zu bestehen.'},
-          {type:'choice',q:'Nominalisierung von „entscheiden":',a:'die Entscheidung',choices:['das Entscheiden','die Entscheidung','der Entscheid','das Entscheidnis']},
+          {type:'choice',q:'Nominalisierung von „entscheiden":',a:'die Entscheidung',opts:['das Entscheiden','die Entscheidung','der Entscheid','das Entscheidnis']},
           {type:'pl_de',q:'Czy mógłby Pan mi pomóc? (grzeczne, Konjunktiv II)',a:'Könnten Sie mir bitte helfen?'},
-          {type:'choice',q:'Welcher Satz verwendet „ohne...zu" korrekt?',a:'Sie verließ das Zimmer, ohne ein Wort zu sagen.',choices:['Sie verließ das Zimmer, ohne ein Wort zu sagen.','Sie verließ das Zimmer, ohne ein Wort gesagt.','Sie verließ das Zimmer, ohne zu ein Wort sagen.','Sie verließ das Zimmer, ohne ein Wort sagt.']},
+          {type:'choice',q:'Welcher Satz verwendet „ohne...zu" korrekt?',a:'Sie verließ das Zimmer, ohne ein Wort zu sagen.',opts:['Sie verließ das Zimmer, ohne ein Wort zu sagen.','Sie verließ das Zimmer, ohne ein Wort gesagt.','Sie verließ das Zimmer, ohne zu ein Wort sagen.','Sie verließ das Zimmer, ohne ein Wort sagt.']},
           {type:'pl_de',q:'Zamiast spać, uczył się do późna.',a:'Anstatt zu schlafen, lernte er bis spät.'}
         ]
       }
